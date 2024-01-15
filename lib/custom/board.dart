@@ -297,7 +297,7 @@ class _BoardState extends ConsumerState<Board> {
           }
         },
         child: Scaffold(
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.transparent,
           body: Container(
             padding:
                 const EdgeInsets.only(top: BOARD_PADDING, left: BOARD_PADDING),
