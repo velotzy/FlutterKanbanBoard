@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kanban_board/constants.dart';
 import 'package:kanban_board/draggable/draggable_state.dart';
 import 'package:kanban_board/draggable/presentation/dragged_card.dart';
+import 'package:kanban_board/utils/paging_scroll_physic.dart';
 import '../Provider/provider_list.dart';
 import '../models/board_list.dart' as board_list;
 import '../models/inputs.dart';
@@ -321,6 +322,8 @@ class _BoardState extends ConsumerState<Board> {
                           child: SingleChildScrollView(
                             controller: boardProv.board.controller,
                             scrollDirection: Axis.horizontal,
+                            
+                            physics: PagingScrollPhysics(itemDimension: (MediaQuery.of(context).size.width * 0.85) - 16),
                             child: Row(
                                 children: boardProv.board.lists
                                     .map(
