@@ -27,6 +27,7 @@ class _BoardBuilderState extends State<BoardBuilder> {
       backgroundColor: const Color.fromRGBO(249, 244, 240, 1),
       body: SafeArea(
         child: Column(
+          
           children: [
             const BoardHeader(),
             Container(
@@ -35,12 +36,12 @@ class _BoardBuilderState extends State<BoardBuilder> {
               color: Colors.black,
             ),
             Expanded(
-              child: KanbanBoard(
+              child: Container(child:  KanbanBoard(
                 List.generate(kanbanData.length, (index) {
                   final element = kanbanData.values.elementAt(index);
                   return BoardListsData(
                       backgroundColor: const Color.fromRGBO(249, 244, 240, 1),
-                      width: width,
+                      width: MediaQuery.of(context).size.width * 0.85,
                       footer: const ListFooter(),
                       headerBackgroundColor:
                           const Color.fromRGBO(249, 244, 240, 1),
@@ -85,7 +86,7 @@ class _BoardBuilderState extends State<BoardBuilder> {
                     fontSize: 18,
                     color: Colors.black,
                     fontWeight: FontWeight.w500),
-              ),
+              ),),
             ),
           ],
         ),
