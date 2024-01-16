@@ -7,11 +7,15 @@ import 'board_list_provider.dart';
 import 'board_provider.dart';
 
 class ProviderList {
+    ProviderList({this.onItemReorder});
+
+  final void Function(int? oldCardIndex, int? newCardIndex, int? oldListIndex,
+      int? newListIndex)? onItemReorder;
   static final boardProvider = ChangeNotifierProvider<BoardProvider>(
     (ref) => BoardProvider(ref),
   );
-  static final cardProvider = ChangeNotifierProvider<ListItemProvider>(
-    (ref) => ListItemProvider(ref),
+  late final cardProvider = ChangeNotifierProvider<ListItemProvider>(
+    (ref) => ListItemProvider(ref, onItemReorder),
   );
   static final boardListProvider = ChangeNotifierProvider<BoardListProvider>(
     (ref) => BoardListProvider(ref),

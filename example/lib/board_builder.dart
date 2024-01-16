@@ -73,13 +73,15 @@ class _BoardBuilderState extends State<BoardBuilder> {
                 }),
                 onItemLongPress: (cardIndex, listIndex) {},
                 onItemReorder:
-                    (oldCardIndex, newCardIndex, oldListIndex, newListIndex) {},
+                    (oldCardIndex, newCardIndex, oldListIndex, newListIndex) {
+                      print((oldCardIndex, newCardIndex, oldListIndex, newListIndex));
+                    },
                 onListLongPress: (listIndex) {},
                 onListReorder: (oldListIndex, newListIndex) {},
                 onItemTap: (cardIndex, listIndex) {},
                 onListTap: (listIndex) {},
                 onListRename: (oldName, newName) {},
-                backgroundColor: const Color.fromRGBO(249, 244, 240, 1),
+                backgroundColor: Colors.red,
                 displacementY: 124,
                 displacementX: 100,
                 textStyle: const TextStyle(

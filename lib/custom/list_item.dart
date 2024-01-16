@@ -26,7 +26,7 @@ class _ItemState extends ConsumerState<Item> {
   Widget build(BuildContext context) {
     // log("BUILDED ${widget.itemIndex}");
     var prov = ref.read(ProviderList.boardProvider);
-    var cardProv = ref.read(ProviderList.cardProvider);
+    var cardProv = ref.read(ProviderList().cardProvider);
     var draggableProv = ref.read(ProviderList.draggableNotifier);
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {

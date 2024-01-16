@@ -75,9 +75,7 @@ class _KanbanBoardState extends State<KanbanBoard> {
   @override
   Widget build(BuildContext context) {
     return ProviderScope(
-        child: MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Board(widget.list,
+        child: Board(widget.list,
           displacementX: widget.displacementX,
           displacementY: widget.displacementY,
           backgroundColor: widget.backgroundColor,
@@ -100,7 +98,7 @@ class _KanbanBoardState extends State<KanbanBoard> {
           listTransitionBuilder: widget.listTransitionBuilder,
           cardTransitionDuration: widget.cardTransitionDuration,
           listTransitionDuration: widget.listTransitionDuration),
-    ));
+    );
   }
 }
 
@@ -164,6 +162,8 @@ class Board extends ConsumerStatefulWidget {
 }
 
 class _BoardState extends ConsumerState<Board> {
+  late ProviderList providerList =
+      ProviderList(onItemReorder: widget.onItemReorder);
   @override
   void initState() {
     var boardProv = ref.read(ProviderList.boardProvider);
@@ -262,7 +262,7 @@ class _BoardState extends ConsumerState<Board> {
       onPointerUp: (event) {
         if (draggableProv.draggableType != DraggableType.none) {
           if (draggableProv.isCardDragged) {
-            ref.read(ProviderList.cardProvider).reorderCard();
+            ref.read(providerList.cardProvider).reorderCard();
           }
           boardProv.move = "";
           draggableNotifier.stopDragging();
@@ -293,7 +293,7 @@ class _BoardState extends ConsumerState<Board> {
       child: GestureDetector(
         onTap: () {
           if (boardProv.newCardState.isFocused == true) {
-            ref.read(ProviderList.cardProvider).saveNewCard();
+            ref.read(providerList.cardProvider).saveNewCard();
           }
         },
         child: Scaffold(
@@ -310,8 +310,6 @@ class _BoardState extends ConsumerState<Board> {
                 Row(
                   children: [
                     Expanded(
-                      child: SizedBox(
-                        height: 1200,
                         child: ScrollConfiguration(
                           behavior: ScrollConfiguration.of(context).copyWith(
                             dragDevices: {
@@ -336,7 +334,7 @@ class _BoardState extends ConsumerState<Board> {
                                     .toList()),
                           ),
                         ),
-                      ),
+                      
                     ),
                   ],
                 ),

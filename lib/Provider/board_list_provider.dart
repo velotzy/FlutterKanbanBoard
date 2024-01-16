@@ -37,7 +37,7 @@ class BoardListProvider extends ChangeNotifier {
     var prov = ref.read(ProviderList.boardProvider);
     final cardState = prov.newCardState;
     if (cardState.isFocused == true) {
-      ref.read(ProviderList.cardProvider).saveNewCard();
+      ref.read(ProviderList().cardProvider).saveNewCard();
     }
 
     var scroll = prov.board.lists[listIndex].scrollController;
