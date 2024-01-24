@@ -8,12 +8,13 @@ import '../models/item_state.dart';
 import 'provider_list.dart';
 
 class ListItemProvider extends ChangeNotifier {
-  ListItemProvider(ChangeNotifierProviderRef<ListItemProvider> this.ref, this.onItemReorder);
+  ListItemProvider(ChangeNotifierProviderRef<ListItemProvider> this.ref, this.onItemReorder, this.onItemLongPress);
   Ref ref;
   TextEditingController newCardTextController = TextEditingController();
 
   final void Function(int? oldCardIndex, int? newCardIndex, int? oldListIndex,
       int? newListIndex)? onItemReorder;
+      final void Function(int? cardIndex, int? listIndex,)? onItemLongPress;
 
   void calculateCardPositionSize(
       {required int listIndex,
@@ -587,6 +588,10 @@ class ListItemProvider extends ChangeNotifier {
 
     if (onItemReorder != null) {
       onItemReorder!(oldCardIndex, newCardIndex, oldListIndex, newListIndex);
+    }
+
+    if (onItemLongPress != null) {
+      onItemLongPress!(oldCardIndex, oldListIndex);
     }
   }
 }
