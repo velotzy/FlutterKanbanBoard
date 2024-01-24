@@ -163,7 +163,7 @@ class Board extends ConsumerStatefulWidget {
 
 class _BoardState extends ConsumerState<Board> {
   late ProviderList providerList =
-      ProviderList(onItemReorder: widget.onItemReorder);
+      ProviderList(onItemReorder: widget.onItemReorder, onItemLongPress: widget.onItemLongPress);
   @override
   void initState() {
     var boardProv = ref.read(ProviderList.boardProvider);

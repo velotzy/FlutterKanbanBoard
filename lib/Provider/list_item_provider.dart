@@ -3,6 +3,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kanban_board/draggable/draggable_state.dart';
+import 'package:vibration/vibration.dart';
 import '../models/board_list.dart';
 import '../models/item_state.dart';
 import 'provider_list.dart';
@@ -467,11 +468,20 @@ class ListItemProvider extends ChangeNotifier {
     }
   }
 
+  vibrate() async {
+    bool? hasVibrator = await Vibration.hasVibrator();
+    print('hasVibrator $hasVibrator');
+    if (hasVibrator!) {
+      Vibration.vibrate();
+      }
+  }
+
   void onLongpressCard(
       {required int listIndex,
       required int itemIndex,
       required BuildContext context,
       required VoidCallback setsate}) {
+        vibrate();
     var prov = ref.read(ProviderList.boardProvider);
     final draggableProv = ref.read(ProviderList.draggableNotifier.notifier);
     var box = context.findRenderObject() as RenderBox;

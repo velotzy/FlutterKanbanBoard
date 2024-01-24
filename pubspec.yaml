@@ -12,6 +12,8 @@ dependencies:
     sdk: flutter
   flutter_riverpod: ^2.3.6
   dotted_border: ^2.1.0
+  vibration: ^1.8.4
+  device_info_plus: ^9.1.1
 
 dev_dependencies:
   flutter_test:

@@ -71,10 +71,12 @@ class _BoardBuilderState extends State<BoardBuilder> {
                         );
                       }));
                 }),
-                onItemLongPress: (cardIndex, listIndex) {},
+                onItemLongPress: (cardIndex, listIndex) {
+                  print('longpressed');
+                },
                 onItemReorder:
                     (oldCardIndex, newCardIndex, oldListIndex, newListIndex) {
-                      print((oldCardIndex, newCardIndex, oldListIndex, newListIndex));
+                      
                     },
                 onListLongPress: (listIndex) {},
                 onListReorder: (oldListIndex, newListIndex) {},
