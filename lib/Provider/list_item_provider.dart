@@ -501,7 +501,11 @@ class ListItemProvider extends ChangeNotifier {
         x: location.dx,
         y: location.dy);
     prov.draggedItemState!.setState = setsate;
-    onItemLongPress!(itemIndex, listIndex);
+    
+    if (onItemLongPress != null) {
+      onItemLongPress!(itemIndex, listIndex);
+    }
+    
     // log("${listIndex} ${itemIndex}");
     setsate();
   }
