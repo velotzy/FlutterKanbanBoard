@@ -501,6 +501,7 @@ class ListItemProvider extends ChangeNotifier {
         x: location.dx,
         y: location.dy);
     prov.draggedItemState!.setState = setsate;
+    onItemLongPress!(itemIndex, listIndex);
     // log("${listIndex} ${itemIndex}");
     setsate();
   }
@@ -590,8 +591,5 @@ class ListItemProvider extends ChangeNotifier {
       onItemReorder!(oldCardIndex, newCardIndex, oldListIndex, newListIndex);
     }
 
-    if (onItemLongPress != null) {
-      onItemLongPress!(oldCardIndex, oldListIndex);
-    }
   }
 }
