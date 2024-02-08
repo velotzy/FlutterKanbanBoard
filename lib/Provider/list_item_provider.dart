@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kanban_board/draggable/draggable_state.dart';
 import '../models/board_list.dart';
@@ -89,7 +90,7 @@ class ListItemProvider extends ChangeNotifier {
         // AnimatedOpacity(opacity: opacity, duration: duration)
         item.placeHolderAt != PlaceHolderAt.bottom
             ? TweenAnimationBuilder(
-                duration: const Duration(milliseconds: 3000),
+                duration: const Duration(milliseconds: 1500),
                 curve: Curves.ease,
                 tween: Tween<double>(begin: 0, end: 1),
                 builder: (context, value, child) {
@@ -109,14 +110,14 @@ class ListItemProvider extends ChangeNotifier {
                   ),
                   width: prov.draggedItemState!.width,
                   height: prov.draggedItemState!.height,
-                  child: DottedBorder(
-                    child: const Center(
-                        child: Text(
-                      "Move here",
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    )),
-                  ),
+                  // child: DottedBorder(
+                  //   child: const Center(
+                  //       child: Text(
+                  //     "Move here",
+                  //     style:
+                  //         TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  //   )),
+                  // ),
                 ),
               )
             : Container(),
@@ -129,7 +130,7 @@ class ListItemProvider extends ChangeNotifier {
         //   child: item.prevChild,
         // ),
         TweenAnimationBuilder(
-          duration: const Duration(milliseconds: 500),
+          duration: const Duration(milliseconds: 250),
           curve: Curves.easeOut,
           tween: Tween<double>(begin: item.actualSize!.height, end: 0),
           builder: (context, value, child) {
@@ -153,7 +154,7 @@ class ListItemProvider extends ChangeNotifier {
         ),
         item.placeHolderAt == PlaceHolderAt.bottom
             ? TweenAnimationBuilder(
-                duration: const Duration(milliseconds: 3000),
+                duration: const Duration(milliseconds: 1500),
                 curve: Curves.ease,
                 tween: Tween<double>(begin: 0, end: 1),
                 builder: (context, value, child) {
@@ -171,14 +172,7 @@ class ListItemProvider extends ChangeNotifier {
                   margin: const EdgeInsets.only(top: 10),
                   width: prov.draggedItemState!.width,
                   height: prov.draggedItemState!.height,
-                  child: DottedBorder(
-                    child: const Center(
-                        child: Text(
-                      "Move here",
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    )),
-                  ),
+                  
                 ),
               )
             : Container(),
@@ -476,6 +470,7 @@ class ListItemProvider extends ChangeNotifier {
       required int itemIndex,
       required BuildContext context,
       required VoidCallback setsate}) {
+        HapticFeedback.vibrate();
         // vibrate();
     var prov = ref.read(ProviderList.boardProvider);
     final draggableProv = ref.read(ProviderList.draggableNotifier.notifier);

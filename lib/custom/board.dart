@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kanban_board/constants.dart';
 import 'package:kanban_board/draggable/draggable_state.dart';
 import 'package:kanban_board/draggable/presentation/dragged_card.dart';
-import 'package:kanban_board/utils/paging_scroll_physic.dart';
+import 'package:kanban_board/utils/snap_scroll_physic.dart';
 import '../Provider/provider_list.dart';
 import '../models/board_list.dart' as board_list;
 import '../models/inputs.dart';
@@ -300,7 +300,7 @@ class _BoardState extends ConsumerState<Board> {
           backgroundColor: Colors.transparent,
           body: Container(
             padding:
-                const EdgeInsets.only(top: BOARD_PADDING, left: BOARD_PADDING),
+                const EdgeInsets.only(top: BOARD_PADDING,),
             decoration: widget.boardDecoration ??
                 BoxDecoration(color: widget.backgroundColor),
             child: Stack(
@@ -321,9 +321,11 @@ class _BoardState extends ConsumerState<Board> {
                             controller: boardProv.board.controller,
                             scrollDirection: Axis.horizontal,
                             
-                            physics: PagingScrollPhysics(itemDimension: (MediaQuery.of(context).size.width * 0.85) - 16),
+                            physics: SnapScrollPhysics(snapSize: MediaQuery.of(context).size.width-88),
                             child: Row(
-                                children: boardProv.board.lists
+                                children: [
+                                  // SizedBox(width: 16,),
+                                  ...boardProv.board.lists
                                     .map(
                                         (e) =>
                                              BoardList(
@@ -331,7 +333,7 @@ class _BoardState extends ConsumerState<Board> {
                                                         .indexOf(e),
                                                   ))
                                                 
-                                    .toList()),
+                                    .toList()]),
                           ),
                         ),
                       

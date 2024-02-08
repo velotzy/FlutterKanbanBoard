@@ -230,7 +230,7 @@ class _BoardListState extends ConsumerState<BoardList> {
           return b!;
         },
         child: Container(
-          margin: const EdgeInsets.only(bottom: 16, right: LIST_GAP),
+          margin: EdgeInsets.only(bottom: 16, right: LIST_GAP, left: widget.index == 0 ? LIST_GAP : 0),
           width: prov.board.lists[widget.index].width!,
           decoration: prov.board.listDecoration ??
               BoxDecoration(
